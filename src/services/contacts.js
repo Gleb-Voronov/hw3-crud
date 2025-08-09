@@ -1,9 +1,21 @@
 import Contact from '../models/contact.js';
 
 export const getAllContacts = async () => {
-  return await Contact.find({}, '-__v -createdAt -updatedAt');
+  return Contact.find();
 };
 
 export const getContactById = async (id) => {
-  return await Contact.findById(id, '-__v -createdAt -updatedAt');
+  return Contact.findById(id);
+};
+
+export const createContact = async (contactData) => {
+  return Contact.create(contactData);
+};
+
+export const updateContact = async (id, updateData) => {
+  return Contact.findByIdAndUpdate(id, updateData, { new: true });
+};
+
+export const deleteContact = async (id) => {
+  return Contact.findByIdAndDelete(id);
 };

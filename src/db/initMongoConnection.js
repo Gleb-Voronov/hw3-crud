@@ -2,10 +2,13 @@ import mongoose from 'mongoose';
 
 export const initMongoConnection = async (mongoUri) => {
   try {
-    await mongoose.connect(mongoUri);
-    console.log(' Connected to MongoDB');
+    await mongoose.connect(mongoUri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log(' Successfully connected to MongoDB');
   } catch (error) {
-    console.error(' MongoDB connection error:', error.message);
+    console.error(' Error connecting to MongoDB:', error.message);
     process.exit(1);
   }
 };
